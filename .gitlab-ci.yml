@@ -17,7 +17,7 @@ build-ubuntu-base:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker build --pull -t "${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}" "$DOCKER_PATH"
-    - docker tag "${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}" "${IMAGE_NAME}:latest"
-    - docker push "${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}"
-    - docker push "${IMAGE_NAME}:latest"
+    - docker build --pull -t "${TAG_GITLAB}:${CI_COMMIT_SHORT_SHA}" "$DOCKER_PATH"
+    - docker tag "${TAG_GITLAB}:${CI_COMMIT_SHORT_SHA}" "${TAG_GITLAB}:latest"
+    - docker push "${TAG_GITLAB}:${CI_COMMIT_SHORT_SHA}"
+    - docker push "${TAG_GITLAB}:latest"
