@@ -16,9 +16,7 @@ There are multiple containers available with various levels of pre-installed uti
 
 ### Ubuntu
 
-These containers use Ubuntu as a base image.
-
-#### Base Container
+These containers are based on Ubuntu Jammy.
 
 * Container base image: `ubuntu:jammy` (Ubuntu Jammy)
 * Container: `registry.gitlab.com/gbe0/utility-containers/ubuntu-base:latest`
@@ -49,3 +47,20 @@ These containers use Ubuntu as a base image.
   * SSH host key checking disabled
   * oh-my-zsh installed
   * Default shell set to zsh
+
+#### Ubuntu Python
+
+The Ubuntu Python container includes Python 3. Conda is installed and PyPy3 is installed by Conda.
+
+* Container base image: `registry.gitlab.com/gbe0/utility-containers/ubuntu-base:latest`
+* Container: `registry.gitlab.com/gbe0/utility-containers/ubuntu-python:latest`
+* Run container: `docker run --pull --rm -it registry.gitlab.com/gbe0/utility-containers/ubuntu-python:latest`
+* Packages added:
+  * python3
+  * python3-venv
+* Configuration added:
+  * Conda plugin added to zsh
+* Other:
+  * Conda installed
+  * Python 3.10 installed
+  * PyPy3 installed

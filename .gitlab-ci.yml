@@ -1,6 +1,7 @@
 # Define stages
 stages:
   - build
+  - build-dependant
 
 # Build base Ubuntu container
 build-ubuntu-base:
@@ -14,6 +15,26 @@ build-ubuntu-base:
   variables:
     TAG_GITLAB: "registry.gitlab.com/gbe0/utility-containers/ubuntu-base"
     DOCKER_PATH: "./ubuntu/base/"
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -t "${TAG_GITLAB}:${CI_COMMIT_SHORT_SHA}" "$DOCKER_PATH"
+    - docker tag "${TAG_GITLAB}:${CI_COMMIT_SHORT_SHA}" "${TAG_GITLAB}:latest"
+    - docker push "${TAG_GITLAB}:${CI_COMMIT_SHORT_SHA}"
+    - docker push "${TAG_GITLAB}:latest"
+
+# Build Python/PyPy/Conda Ubuntu container
+build-ubuntu-python:
+  image: docker:latest
+  stage: build-dependant
+  only:
+    changes:
+      - ubuntu/python/**
+  services:
+    - docker:dind
+  variables:
+    TAG_GITLAB: "registry.gitlab.com/gbe0/utility-containers/ubuntu-python"
+    DOCKER_PATH: "./ubuntu/python/"
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
