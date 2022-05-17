@@ -29,6 +29,7 @@ build-ubuntu-python:
   stage: build-dependant
   only:
     changes:
+      - ubuntu/base/**
       - ubuntu/python/**
   services:
     - docker:dind
