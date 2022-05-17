@@ -1,0 +1,23 @@
+# Define stages
+stages:
+  - build
+
+# Build base Ubuntu container
+build-ubuntu-base:
+  image: docker:latest
+  stage: build
+  only:
+    changes:
+      - ubuntu/base/**
+  services:
+    - docker:dind
+  variables:
+    TAG_GITLAB: "registry.gitlab.com/gbe0/utility-containers/ubuntu-base"
+    DOCKER_PATH: "./ubuntu/base/"
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -t "${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}" "$DOCKER_PATH"
+    - docker tag "${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}" "${IMAGE_NAME}:latest"
+    - docker push "${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}"
+    - docker push "${IMAGE_NAME}:latest"

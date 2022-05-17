@@ -1,0 +1,7 @@
+# Disable host key checking
+StrictHostKeyChecking no
+UserKnownHostsFile=/dev/null
+
+Host *
+  GSSAPIAuthentication yes
+  SendEnv LANG LC_*
