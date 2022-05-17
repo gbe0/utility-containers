@@ -29,7 +29,7 @@ These containers are based on Ubuntu Jammy.
   * iputils-ping
   * jq
   * less
-  * mtr
+  * mtr-tiny
   * neovim
   * net-tools
   * strace

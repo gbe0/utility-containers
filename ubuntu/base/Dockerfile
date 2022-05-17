@@ -52,7 +52,7 @@ RUN echo \
       ### Install useful command line utilities
       && DEBIAN_FRONTEND="noninteractive" apt-get -q -y install \
         vim neovim less strace curl wget screen telnet git tmux dnsutils jq net-tools \
-        iputils-ping bash-completion sudo tcptraceroute \
+        iputils-ping bash-completion sudo tcptraceroute mtr-tiny \
       ### Install zsh
       && DEBIAN_FRONTEND="noninteractive" apt-get -q -y install \
         zsh zsh-syntax-highlighting \
