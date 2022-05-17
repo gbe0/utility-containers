@@ -1,5 +1,5 @@
 ## Use Ubuntu base image
-FROM registry.gitlab.com/gbe0/utility-containers/ubuntu-python:latest
+FROM registry.gitlab.com/gbe0/utility-containers/ubuntu-base:latest
 
 ## Install Python
 RUN echo \
